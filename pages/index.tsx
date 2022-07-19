@@ -38,15 +38,24 @@ export const getServerSideProps = async () => {
   }
 
   const squads = [];
+  const PER_SQUAD = 5;
   //petla ktora dzieli liste z serwera na 5 graczy na grupe
-  for (let x = 0; x < Math.ceil(players.length / 5); x++) {
-    squads.push({ players: players.slice(x * 5, x * 5 + 5) }); // get 5 users per squad
+  for (let x = 0; x < Math.ceil(players.length / PER_SQUAD); x++) {
+    squads.push({
+      players: players.slice(x * PER_SQUAD, x * PER_SQUAD + PER_SQUAD),
+    }); // get 5 users per squad
   }
 
   const legions = [];
-  //petla ktora dzieli na 5 grup na na oddzialy
-  for (let x = 0; x < Math.ceil(squads.length / 5); x++) {
-    legions.push({ squads: squads.slice(x * 5, x * 5 + 5) }); // get 5 squads per legion
+  const SQUADS_PER_LEGION = 4;
+  //petla ktora dzieli na 5 grup na oddzialy
+  for (let x = 0; x < Math.ceil(squads.length / SQUADS_PER_LEGION); x++) {
+    legions.push({
+      squads: squads.slice(
+        x * SQUADS_PER_LEGION,
+        x * SQUADS_PER_LEGION + SQUADS_PER_LEGION
+      ),
+    }); // get 5 squads per legion
   }
 
   return {
