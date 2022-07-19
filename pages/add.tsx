@@ -6,7 +6,7 @@ import prisma from "../lib/prisma";
 import { ThumbUpIcon, ThumbDownIcon } from "@heroicons/react/solid";
 
 //funkcja ktora sprawdza czy jest gracze istnieja
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const players = await prisma.player.findMany();
   if (!players) {
     return {
@@ -21,7 +21,7 @@ export const getStaticProps = async () => {
 //strona do dodawania graczy i ma argument liste graczy z serwera
 const Add: NextPage = ({
   players,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+}: InferGetStaticPropsType<typeof getServerSideProps>) => {
   const [dirty, setDirty] = useState(false);
   const [input, setinput] = useState("");
   const [playerListBefore, setPlayerListBefore] = useState<
