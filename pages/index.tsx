@@ -47,7 +47,7 @@ export const getServerSideProps = async () => {
   }
 
   const legions = [];
-  const SQUADS_PER_LEGION = 4;
+  const SQUADS_PER_LEGION = 6;
   //petla ktora dzieli na 5 grup na oddzialy
   for (let x = 0; x < Math.ceil(squads.length / SQUADS_PER_LEGION); x++) {
     legions.push({
